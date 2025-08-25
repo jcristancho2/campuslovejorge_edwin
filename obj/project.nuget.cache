@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6H9Wv1gqkjE=",
+  "dgSpecHash": "KZ1T6ALR7DY=",
   "success": true,
   "projectFilePath": "/home/camper/Escritorio/campuslovejorge_edwin/campuslovejorge_edwin.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "/home/camper/.nuget/packages/mono.texttemplating/3.0.0/mono.texttemplating.3.0.0.nupkg.sha512",
     "/home/camper/.nuget/packages/mysqlconnector/2.4.0/mysqlconnector.2.4.0.nupkg.sha512",
     "/home/camper/.nuget/packages/pomelo.entityframeworkcore.mysql/9.0.0-rc.1.efcore.9.0.0/pomelo.entityframeworkcore.mysql.9.0.0-rc.1.efcore.9.0.0.nupkg.sha512",
+    "/home/camper/.nuget/packages/spectre.console/0.50.0/spectre.console.0.50.0.nupkg.sha512",
     "/home/camper/.nuget/packages/system.codedom/6.0.0/system.codedom.6.0.0.nupkg.sha512",
     "/home/camper/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",
     "/home/camper/.nuget/packages/system.composition/7.0.0/system.composition.7.0.0.nupkg.sha512",
@@ -48,6 +49,7 @@
     "/home/camper/.nuget/packages/system.composition.runtime/7.0.0/system.composition.runtime.7.0.0.nupkg.sha512",
     "/home/camper/.nuget/packages/system.composition.typedparts/7.0.0/system.composition.typedparts.7.0.0.nupkg.sha512",
     "/home/camper/.nuget/packages/system.io.pipelines/7.0.0/system.io.pipelines.7.0.0.nupkg.sha512",
+    "/home/camper/.nuget/packages/system.memory/4.6.3/system.memory.4.6.3.nupkg.sha512",
     "/home/camper/.nuget/packages/system.reflection.metadata/7.0.0/system.reflection.metadata.7.0.0.nupkg.sha512",
     "/home/camper/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/camper/.nuget/packages/system.text.json/9.0.8/system.text.json.9.0.8.nupkg.sha512",

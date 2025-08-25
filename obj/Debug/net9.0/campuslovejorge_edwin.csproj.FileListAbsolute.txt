@@ -119,3 +119,5 @@
 /home/camper/Escritorio/campuslovejorge_edwin/obj/Debug/net9.0/campuslovejorge_edwin.pdb
 /home/camper/Escritorio/campuslovejorge_edwin/obj/Debug/net9.0/campuslovejorge_edwin.genruntimeconfig.cache
 /home/camper/Escritorio/campuslovejorge_edwin/obj/Debug/net9.0/ref/campuslovejorge_edwin.dll
+/home/camper/Escritorio/campuslovejorge_edwin/bin/Debug/net9.0/appsettings.json
+/home/camper/Escritorio/campuslovejorge_edwin/bin/Debug/net9.0/Spectre.Console.dll

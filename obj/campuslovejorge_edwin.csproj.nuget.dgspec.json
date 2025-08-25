@@ -69,6 +69,10 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[9.0.0-rc.1.efcore.9.0.0, )"
+            },
+            "Spectre.Console": {
+              "target": "Package",
+              "version": "[0.50.0, )"
             }
           },
           "imports": [

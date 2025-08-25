@@ -1,6 +1,6 @@
-﻿﻿using examencsharp.src.Shared.Helpers;
+﻿using campuslovejorge_edwin.Src.Shared.Helpers;
 
-namespace examencsharp;
+namespace campuslovejorge_edwin;
 
 class Program
 {
