@@ -1,14 +1,17 @@
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace campuslovejorge_edwin.Src.Shared.Context;
-
-public class AppDbContext : DbContext
+namespace campuslovejorge_edwin.Src.Shared.Context
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+
+    public class AppDbContext : DbContext
     {
-    }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        }
     }
 }
