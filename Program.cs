@@ -1,4 +1,5 @@
 ﻿using campuslovejorge_edwin.Src.Modules.Administradores.UI;
+using campuslovejorge_edwin.Src.Modules.EstadisticasSistema.UI;
 using campuslovejorge_edwin.Src.Shared.Helpers;
 
 var context = DbContextFactory.Create();
@@ -21,7 +22,7 @@ while (!salir)
             await new MenuAdministrador(context).RenderMenu();
             break;
         case 2:
-            // logica de administracion de paises
+            await new MenuEstadisticas(context).MostrarAsync();
             break;
         case 3:
             salir = true;

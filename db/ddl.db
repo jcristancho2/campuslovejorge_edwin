@@ -41,7 +41,7 @@ CREATE TABLE profile(
     status_id INT,
     createDate DATE NOT NULL,
     profession_id INT,
-    total_likes INT NOT NULL,    
+    total_likes INT NOT NULL
 )
 
 CREATE TABLE daily_likes (
@@ -83,21 +83,23 @@ CREATE TABLE application_users (
     FOREIGN KEY (application_id) REFERENCES application(id)
 )
 
-CREATE TABLE user_match(
+CREATE TABLE user_match (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user1_id INT,
     user2_id INT,
-    match_date INT TIMESTAMP,
+    match_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user1_id) REFERENCES users(id),
     FOREIGN KEY (user2_id) REFERENCES users(id)
-)
+);
+
 Src/Modules/Match
 CREATE TABLE userslikes(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     liked_profile_id INT,
     like_date DATE NOT NULL,
-    is_match BOLEAN DEFAULT 0 NOT NULL,
+    is_match BOOLEAN NOT NULL DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (liked_profile_id) REFERENCES profile(id)
-)
+);
+
