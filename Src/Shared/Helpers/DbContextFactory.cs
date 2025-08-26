@@ -1,9 +1,15 @@
-using campuslovejorge_edwin.Src.Shared.Context; 
-using Microsoft.EntityFrameworkCore; 
-using Microsoft.Extensions.Configuration; 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace campuslovejorge_edwin.Src.Shared.Helpers{
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using campuslovejorge_edwin.Src.Shared.Context;
+using campuslovejorge_edwin.Src.Shared.Helpers;
 
+namespace campuslovejorge_edwin.Src.Shared.Context
+{
     public class DbContextFactory
     {
         public static AppDbContext Create()
@@ -14,7 +20,8 @@ namespace campuslovejorge_edwin.Src.Shared.Helpers{
                 .AddEnvironmentVariables()
                 .Build();
             string? connectionString = Environment.GetEnvironmentVariable("MYSQL_CONNECTION")
-                                ?? config.GetConnectionString("MySqlDB");
+                                ?? config.GetConnectionString("MySqlDb");
+                                
 
             if (string.IsNullOrWhiteSpace(connectionString))
                 throw new InvalidOperationException("No se encontró una cadena de conexión válida.");

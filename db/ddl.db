@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/module_user
 CREATE TABLE gender (
     gender_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE
@@ -17,6 +20,7 @@ CREATE TABLE relationship_type (
 CREATE TABLE interest (
     interest_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE
+<<<<<<< HEAD
 =======
 TABLA APPLICATION
 CREATE TABLE application(
@@ -111,6 +115,8 @@ CREATE TABLE user_match (
     FOREIGN KEY (user1_id) REFERENCES users(id),
     FOREIGN KEY (user2_id) REFERENCES users(id)
 >>>>>>> feature/menu
+=======
+>>>>>>> feature/module_user
 );
 
 CREATE TABLE user (

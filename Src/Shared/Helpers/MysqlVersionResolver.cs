@@ -4,15 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySqlConnector;
 
-namespace campuslovejorge_edwin.Src.Shared.Helpers;
-public class MySqlVersionResolver
+namespace campuslovejorge_edwin.Src.Shared.Helpers
 {
-    public static Version DetectVersion(string connectionString)
+    public class MySqlVersionResolver
     {
-        using var conn = new MySqlConnection(connectionString);
-        conn.Open();
-        var raw = conn.ServerVersion;
-        var clean = raw.Split('-')[0];
-        return Version.Parse(clean);
+        public static Version DetectVersion(string connectionString)
+        {
+            using var conn = new MySqlConnection(connectionString);
+            conn.Open();
+            var raw = conn.ServerVersion;
+            var clean = raw.Split('-')[0];
+            return Version.Parse(clean);
+        }
     }
 }

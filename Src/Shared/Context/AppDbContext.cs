@@ -1,16 +1,22 @@
+<<<<<<< HEAD
 using campuslovejorge_edwin.Src.Modules.Administradores.Domain.Entities;
 using campuslovejorge_edwin.Src.Modules.EstadisticasSistema.Domain.Entities;
 using campuslovejorge_edwin.Src.Modules.User.Domain.Entities;
 using campuslovejorge_edwin.Src.Modules.Users.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Profile = campuslovejorge_edwin.Src.Modules.Users.Domain.Entities.Profile;
+=======
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using campuslovejorge_edwin.Src.Modules.User.Domain.Entities;
+>>>>>>> feature/module_user
 
-namespace campuslovejorge_edwin.Src.Shared.Context;
-
-public class AppDbContext : DbContext
+namespace campuslovejorge_edwin.Src.Shared.Context
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+
+    public class AppDbContext : DbContext
     {
+<<<<<<< HEAD
         
     }
     public DbSet<Administrado> Administrador { get; set; }
@@ -63,5 +69,16 @@ public class AppDbContext : DbContext
         entity.Property(p => p.Total_Likes).HasColumnName("total_likes");
     });
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+=======
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
+        public DbSet<UserEntity> Users { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        }
+>>>>>>> feature/module_user
     }
 }
