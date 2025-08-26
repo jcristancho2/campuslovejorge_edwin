@@ -14,6 +14,7 @@ namespace campuslovejorge_edwin.Src.Modules.EstadisticasSistema.Domain.Entities
         public string Identification { get; set; } = null!;
         public int Total_Likes { get; set; }
         public ICollection<UsersLikes> LikesRecibidos { get; set; } = new List<UsersLikes>();
+        
     }
 
     public class UsersLikes

@@ -29,11 +29,9 @@ namespace campuslovejorge_edwin.Src.Modules.Administradores.UI
 
 
                 Console.WriteLine("Menu de Administrador");
-                Console.WriteLine("1. Agregar Administrador");
-                Console.WriteLine("2. Editar Administrador");
-                Console.WriteLine("3. Eliminar Administrador");
-                Console.WriteLine("4. Iniciar sesion Admin");
-                Console.WriteLine("5. Salir");
+                Console.WriteLine("1. Registrar Usuario");
+                Console.WriteLine("2. Iniciar sesion ");
+                Console.WriteLine("3. Salir");
                 Console.Write("Seleccione una opción: ");
                 int opcion = int.Parse(Console.ReadLine()!);
 
