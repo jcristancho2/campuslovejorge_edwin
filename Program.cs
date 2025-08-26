@@ -1,64 +1,51 @@
-﻿using campuslovejorge_edwin.Src.Modules.Administradores.UI;
-using campuslovejorge_edwin.Src.Modules.EstadisticasSistema.UI;
-using campuslovejorge_edwin.Src.Modules.Users.UI;
-using campuslovejorge_edwin.Src.Shared.Helpers;
-﻿using campuslovejorge_edwin.Src.Shared.Context;
+﻿using campuslovejorge_edwin.Src.Shared.Helpers;
+using campuslovejorge_edwin.Src.Shared.Context;
 using campuslovejorge_edwin.Src.Modules.User.Infrastructure.Repositories;
 using campuslovejorge_edwin.Src.Modules.User.Application.Services;
-using campuslovejorge_edwin.Src.Modules.User.UI;
+using campuslovejorge_edwin.Src.Modules.User.Application.Interfaces;
+using campuslovejorge_edwin.Src.Modules.Interaction.Infrastructure.Repositories;
+using campuslovejorge_edwin.Src.Modules.Interaction.Application.Services;
+using campuslovejorge_edwin.Src.Modules.Interaction.Application.Interfaces;
+using campuslovejorge_edwin.Src.Modules.MainMenu;
 
-var context = DbContextFactory.Create();
-
-
-bool salir = false;
-while (!salir)
+namespace campuslovejorge_edwin
 {
-    Console.Clear();
-    Console.WriteLine("\n--- MENÚ CRUD ---");
-    Console.WriteLine("1. Registro  de usuario");
-    Console.WriteLine("2. Iniciar sesion");
-    Console.WriteLine("3. Salir");
-    Console.Write("Opción: ");
-    int opm = int.Parse(Console.ReadLine()!);
-
-    switch (opm)
+    class Program
     {
-        case 1:
-            await new MenuConsole(context).MostrarMenuAsync();
-            Console.WriteLine("Presione una tecla para continuar...");
+        static async Task Main(string[] args)
+        {
+            try
+            {
+                Console.WriteLine("Iniciando Campus Love...");
+                
+                // Crear DbContext usando la factory
+                using var context = DbContextFactory.Create();
+                Console.WriteLine("Conexión creada exitosamente con la base de datos!");
+
+                // Crear repositorios
+                var userRepository = new UserRepository(context);
+                var interactionRepository = new InteractionRepository(context);
+                Console.WriteLine("Repositorios creados exitosamente!");
+
+                // Crear servicios
+                var authService = new AuthService(userRepository);
+                var userService = new UserService(userRepository);
+                var interactionService = new InteractionService(interactionRepository);
+                Console.WriteLine("Servicios creados exitosamente!");
+
+                // Crear e iniciar el menú principal
+                var mainMenu = new MainMenu(authService, userService, interactionService);
+                Console.WriteLine("Menú principal creado, iniciando...");
+                await mainMenu.StartAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al conectar con la base de datos: {ex.Message}");
+                Console.WriteLine($"StackTrace: {ex.StackTrace}");
+            }
+
+            Console.WriteLine("Presiona cualquier tecla para salir...");
             Console.ReadKey();
-            break;
-        case 2:
-            await new MenuConsole(context).IniciarSesionAsync();
-            break;
-        case 3:
-            salir = true;
-            break;
-        default:
-            Console.WriteLine("❗ Opción inválida.");
-            break;
-    static async Task Main(string[] args)
-    {
-        try
-        {
-            // Crear DbContext usando la factory
-            using var context = DbContextFactory.Create();
-            Console.WriteLine("Conexión creada exitosamente con la base de datos!");
-
-            // Crear repositorio y servicio de User
-            var userRepository = new UserRepository(context);
-            var userService = new UserService(userRepository);
-
-            // Crear e iniciar el menú de User
-            var menuUser = new MenuUser(userService);
-            await menuUser.ShowMenuAsync();
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error al conectar con la base de datos: " + ex.Message);
-        }
-
-        Console.WriteLine("Presiona cualquier tecla para salir...");
-        Console.ReadKey();
     }
 }

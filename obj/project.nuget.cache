@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oqbo28V582w=",
+  "dgSpecHash": "/VyyWJDxveE=",
   "success": true,
   "projectFilePath": "/home/rawcrow/Escritorio/campuslovejorge_edwin/campuslovejorge_edwin.csproj",
   "expectedPackageFiles": [
+    "/home/rawcrow/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/rawcrow/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/rawcrow/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "/home/rawcrow/.nuget/packages/microsoft.build.framework/17.8.3/microsoft.build.framework.17.8.3.nupkg.sha512",
@@ -55,15 +56,5 @@
     "/home/rawcrow/.nuget/packages/system.text.json/9.0.8/system.text.json.9.0.8.nupkg.sha512",
     "/home/rawcrow/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problem reading the cache file /home/rawcrow/Escritorio/campuslovejorge_edwin/obj/project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "/home/rawcrow/Escritorio/campuslovejorge_edwin/campuslovejorge_edwin.csproj",
-      "warningLevel": 1,
-      "filePath": "/home/rawcrow/Escritorio/campuslovejorge_edwin/campuslovejorge_edwin.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

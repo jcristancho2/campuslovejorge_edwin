@@ -28,10 +28,12 @@ namespace campuslovejorge_edwin.Src.Modules.MainMenu
 
         public async Task StartAsync()
         {
+            Console.WriteLine("DEBUG: StartAsync iniciado");
             var exit = false;
             
             while (!exit)
             {
+                Console.WriteLine("DEBUG: Iniciando bucle del menú");
                 AnsiConsole.Clear();
                 
                 // Título principal con estilo
@@ -47,6 +49,7 @@ namespace campuslovejorge_edwin.Src.Modules.MainMenu
 
                 if (_currentUser == null)
                 {
+                    Console.WriteLine("DEBUG: Usuario no autenticado, mostrando menú de login");
                     // Usuario no autenticado
                     var choice = AnsiConsole.Prompt(
                         new SelectionPrompt<string>()
@@ -69,14 +72,19 @@ namespace campuslovejorge_edwin.Src.Modules.MainMenu
                             exit = true;
                             break;
                     }
+                    
+                    // Solo continuar el bucle si el usuario no está autenticado
+                    // Si se autenticó, el bucle continuará y mostrará el menú autenticado
                 }
                 else
                 {
+                    Console.WriteLine("DEBUG: Usuario autenticado, mostrando menú principal");
                     // Usuario autenticado
                     await ShowAuthenticatedMenuAsync();
                 }
             }
             
+            Console.WriteLine("DEBUG: Saliendo del bucle del menú");
             AnsiConsole.Write(
                 new Rule("[green]¡Gracias por usar Campus Love![/]")
                     .RuleStyle("green")

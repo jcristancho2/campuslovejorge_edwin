@@ -53,9 +53,18 @@ namespace campuslovejorge_edwin.Src.Shared.Configuration
                     .IsRequired()
                     .HasColumnName("orientation_id");
 
+            entity.Property(u => u.CareerId)
+                    .IsRequired()
+                    .HasColumnName("career_id");
+
+            entity.Property(u => u.ProfilePhrase)
+                    .HasMaxLength(500)
+                    .HasColumnName("profile_phrase");
+
             // Relaciones (si agregas las tablas de catálogo)
             // entity.HasOne<Gender>().WithMany().HasForeignKey(u => u.GenderId);
-            // entity.HasOne<Orientation>().WithMany().HasForeignKey(u => u.OrientationId);
+            // entity.HasOne<Orientation>().WithMany().HasForeignKey(u => u.GenderId);
+            // entity.HasOne<Career>().WithMany().HasForeignKey(u => u.CareerId);
         }
     }
 }
