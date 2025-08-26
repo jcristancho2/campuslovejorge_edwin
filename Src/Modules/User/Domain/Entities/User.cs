@@ -3,28 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace campuslovejorge_edwin.Src.Modules.User.Domain.Entities{
+namespace campuslovejorge_edwin.Src.Modules.User.Domain.Entities
+{
 
-    public class User
+    public class UserEntity
     {
-        public int Id { get; set; }
-        public string? Username { get; set; }
-        public string? Password { get; set; }
-        public int Age { get; set; }
-        public int ProfileId { get; set; }
-        public string Gender { get; set; }
-        public int BonusLikes { get; set; }
-        public List<string> Interests { get; set; }
-        public int DailyLikesLeft { get; set; }
-
-        public List<Profile> Profile { get; set; } = new List<Profile>();
+        public int UserId { get; set; }
+        public string FullName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
+        public DateTime Birthdate { get; set; }
+        public int GenderId { get; set; }
+        public int OrientationId { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
-
 }
-    public int Id { get; set; }
-    public string Name { get; set; }
-    
-    public string Gender { get; set; }
-    public string Career { get; set; }
-    public string ProfilePhrase { get; set; }
-    

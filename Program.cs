@@ -1,22 +1,34 @@
-﻿using campuslovejorge_edwin.Src.Shared.Helpers;
+﻿using campuslovejorge_edwin.Src.Shared.Context;
+using campuslovejorge_edwin.Src.Modules.User.Infrastructure.Repositories;
+using campuslovejorge_edwin.Src.Modules.User.Application.Services;
+using campuslovejorge_edwin.Src.Modules.User.UI;
 
 namespace campuslovejorge_edwin;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         try
         {
-            var context = DbContextFactory.Create();
+            // Crear DbContext usando la factory
+            using var context = DbContextFactory.Create();
+            Console.WriteLine("Conexión creada exitosamente con la base de datos!");
 
-            Console.WriteLine("Conexion creada");
+            // Crear repositorio y servicio de User
+            var userRepository = new UserRepository(context);
+            var userService = new UserService(userRepository);
+
+            // Crear e iniciar el menú de User
+            var menuUser = new MenuUser(userService);
+            await menuUser.ShowMenuAsync();
         }
-        catch
+        catch (Exception ex)
         {
-            throw new Exception("Error al conectar con la base de datos");
+            Console.WriteLine("Error al conectar con la base de datos: " + ex.Message);
         }
-        
-        
+
+        Console.WriteLine("Presiona cualquier tecla para salir...");
+        Console.ReadKey();
     }
 }

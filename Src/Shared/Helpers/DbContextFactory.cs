@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using campuslovejorge_edwin.Src.Shared.Context;
-namespace campuslovejorge_edwin.Src.Shared.Helpers
+using campuslovejorge_edwin.Src.Shared.Helpers;
+
+namespace campuslovejorge_edwin.Src.Shared.Context
 {
     public class DbContextFactory
     {
@@ -18,13 +20,13 @@ namespace campuslovejorge_edwin.Src.Shared.Helpers
                 .AddEnvironmentVariables()
                 .Build();
             string? connectionString = Environment.GetEnvironmentVariable("MYSQL_CONNECTION")
-                                ?? config.GetConnectionString("MySqlDB"); 
+                                ?? config.GetConnectionString("MySqlDb");
                                 
 
             if (string.IsNullOrWhiteSpace(connectionString))
                 throw new InvalidOperationException("No se encontró una cadena de conexión válida.");
             // Detectar versión MySQL 
-            var detectedVersion = MysqlVersionResolver.DetectVersion(connectionString);
+            var detectedVersion = MySqlVersionResolver.DetectVersion(connectionString);
             var minVersion = new Version(8, 0, 0);
             if (detectedVersion < minVersion)
                 throw new NotSupportedException($"Versión de MySQL no soportada: {detectedVersion}. Requiere {minVersion} o superior.");
