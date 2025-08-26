@@ -4,7 +4,7 @@ using campuslovejorge_edwin.Src.Modules.User.Domain.Entities;
 
 namespace campuslovejorge_edwin.Src.Modules.User.Application.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         Task<UserEntity> AddUserAsync(UserEntity user);
         Task<UserEntity?> GetUserByIdAsync(int id);
@@ -12,6 +12,7 @@ namespace campuslovejorge_edwin.Src.Modules.User.Application.Interfaces
         Task<List<UserEntity>> GetAllUsersAsync();
         Task<UserEntity> UpdateUserAsync(UserEntity user);
         Task<bool> DeleteUserAsync(int id);
+        Task<bool> ChangePasswordAsync(int userId, string currentPassword, string newPassword);
+        Task<bool> ValidatePasswordAsync(int userId, string password);
     }
 }
-

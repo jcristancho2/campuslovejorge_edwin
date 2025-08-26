@@ -30,7 +30,7 @@ namespace campuslovejorge_edwin.Src.Modules.User.UI
                 AnsiConsole.Write(
                     new FigletText("CAMPUS LOVE")
                         .Centered()
-                        .Color(Color.yellow));
+                        .Color(Color.Green));
                 
                 AnsiConsole.Write(
                     new Rule("[yellow]Sistema de Gestión de Usuarios[/]")
@@ -164,15 +164,15 @@ namespace campuslovejorge_edwin.Src.Modules.User.UI
                 }
                 else
                 {
-                    var table = new Table()
-                        .Border(TableBorder.Rounded)
-                        .AddColumn("[blue]ID[/]")
-                        .AddColumn("[green]Nombre[/]")
-                        .AddColumn("[cyan]Email[/]")
-                        .AddColumn("[magenta]Fecha Nac.[/]")
-                        .AddColumn("[yellow]Género[/]")
-                        .AddColumn("[orange]Orientación[/]")
-                        .AddColumn("[purple]Creado[/]");
+                                    var table = new Table()
+                    .Border(TableBorder.Rounded)
+                    .AddColumn("[blue]ID[/]")
+                    .AddColumn("[green]Nombre[/]")
+                    .AddColumn("[blue]Email[/]")
+                    .AddColumn("[blue]Fecha Nac.[/]")
+                    .AddColumn("[yellow]Género[/]")
+                    .AddColumn("[cyan]Orientación[/]")
+                    .AddColumn("[blue]Creado[/]");
 
                     foreach (var user in users)
                     {
