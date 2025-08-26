@@ -1,5 +1,6 @@
 ﻿using campuslovejorge_edwin.Src.Modules.Administradores.UI;
 using campuslovejorge_edwin.Src.Modules.EstadisticasSistema.UI;
+using campuslovejorge_edwin.Src.Modules.Users.UI;
 using campuslovejorge_edwin.Src.Shared.Helpers;
 
 var context = DbContextFactory.Create();
@@ -10,8 +11,8 @@ while (!salir)
 {
     Console.Clear();
     Console.WriteLine("\n--- MENÚ CRUD ---");
-    Console.WriteLine("1. Administrar Usuarios");
-    Console.WriteLine("2. Administrar Paises");
+    Console.WriteLine("1. Registro  de usuario");
+    Console.WriteLine("2. Iniciar sesion");
     Console.WriteLine("3. Salir");
     Console.Write("Opción: ");
     int opm = int.Parse(Console.ReadLine()!);
@@ -19,10 +20,12 @@ while (!salir)
     switch (opm)
     {
         case 1:
-            await new MenuAdministrador(context).RenderMenu();
+            await new MenuConsole(context).MostrarMenuAsync();
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
             break;
         case 2:
-            await new MenuEstadisticas(context).MostrarAsync();
+            await new MenuConsole(context).IniciarSesionAsync();
             break;
         case 3:
             salir = true;
