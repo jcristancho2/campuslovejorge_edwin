@@ -1,105 +1,91 @@
-TABLA APPLICATION
-CREATE TABLE application(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    description TEXT
-)
+CREATE TABLE gender (
+    gender_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE
+);
 
-CREATE TABLE administrador(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    lastname VARCHAR(50),
-    identification VARCHAR(20) UNIQUE NOT NULL,
-    username VARCHAR (100),
-    password VARCHAR(20) UNIQUE NOT NULL,
-    application_id INT,
-    FOREIGN KEY (application_id) REFERENCES application(id)
-)
+CREATE TABLE orientation (
+    orientation_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE
+);
 
-CREATE TABLE gender(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(100)
-)
-
-CREATE TABLE profession(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(100)
-)
-
-CREATE TABLE status(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(100)
-)
-
-CREATE TABLE profile(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    lastname VARCHAR(50),
-    identification VARCHAR(20) UNIQUE NOT NULL,
-    gender_id INT,
-    slogan TEXT,
-    status_id INT,
-    createDate DATE NOT NULL,
-    profession_id INT,
-    total_likes INT NOT NULL
-)
-
-CREATE TABLE daily_likes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    date DATE,
-    profile_id INT,
-    numbers_likes INT NOT NULL,
-    status VARCHAR(50),
-    FOREIGN KEY (profile_id) REFERENCES profession(id)
-)
-
-CREATE TABLE users(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100),
-    password VARCHAR(20) UNIQUE NOT NULL,
-    profile_id INT,
-    birthdate DATE,
-    FOREIGN KEY (profile_id) REFERENCES profile(id)
-)
+CREATE TABLE relationship_type (
+    relationship_type_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE
+);
 
 CREATE TABLE interest (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(100)
-)
-
-CREATE TABLE interest_profile(
-    profile_id INT,
-    interest_id INT,
-    PRIMARY KEY (profile_id, interest_id),
-    FOREIGN KEY (profile_id) REFERENCES profile(id),
-    FOREIGN KEY (interest_id) REFERENCES interest(id)
-)
-
-CREATE TABLE application_users (
-    user_id INT,
-    application_id INT,
-    PRIMARY KEY(user_id, application_id),
-    FOREIGN KEY(user_id) REFERENCES users(id),
-    FOREIGN KEY (application_id) REFERENCES application(id)
-)
-
-CREATE TABLE user_match (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user1_id INT,
-    user2_id INT,
-    match_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user1_id) REFERENCES users(id),
-    FOREIGN KEY (user2_id) REFERENCES users(id)
+    interest_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
-Src/Modules/Match
-CREATE TABLE userslikes(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    liked_profile_id INT,
-    like_date DATE NOT NULL,
-    is_match BOOLEAN NOT NULL DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (liked_profile_id) REFERENCES profile(id)
+CREATE TABLE user (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    birthdate DATE NOT NULL,
+    gender_id INT NOT NULL,
+    orientation_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (gender_id) REFERENCES gender(gender_id),
+    FOREIGN KEY (orientation_id) REFERENCES orientation(orientation_id)
 );
 
+CREATE TABLE user_interest (
+    user_id INT NOT NULL,
+    interest_id INT NOT NULL,
+    PRIMARY KEY (user_id, interest_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (interest_id) REFERENCES interest(interest_id)
+);
+
+
+CREATE TABLE user_relationship_type (
+    user_id INT NOT NULL,
+    relationship_type_id INT NOT NULL,
+    PRIMARY KEY (user_id, relationship_type_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (relationship_type_id) REFERENCES relationship_type(relationship_type_id)
+);
+
+
+CREATE TABLE user_like (
+    like_id INT AUTO_INCREMENT PRIMARY KEY,
+    liker_id INT NOT NULL,
+    liked_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (liker_id) REFERENCES user(user_id),
+    FOREIGN KEY (liked_id) REFERENCES user(user_id),
+    CONSTRAINT unique_like UNIQUE (liker_id, liked_id)
+);
+
+
+CREATE TABLE match_table (
+    match_id INT AUTO_INCREMENT PRIMARY KEY,
+    user1_id INT NOT NULL,
+    user2_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user1_id) REFERENCES user(user_id),
+    FOREIGN KEY (user2_id) REFERENCES user(user_id),
+    CONSTRAINT unique_match UNIQUE (user1_id, user2_id)
+);
+
+CREATE TABLE daily_likes (
+    daily_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    like_count INT NOT NULL DEFAULT 0,
+    record_date DATE NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    CONSTRAINT unique_daily UNIQUE (user_id, record_date)
+);
+
+CREATE TABLE statistics (
+    stat_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    total_likes_sent INT DEFAULT 0,
+    total_likes_received INT DEFAULT 0,
+    total_matches INT DEFAULT 0,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
